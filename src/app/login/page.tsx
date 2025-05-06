@@ -1,5 +1,5 @@
-import LoginForm from '@/ui/login-form';
-import SocialLoginButtons from '@/ui/social-login-buttons';
+import LoginForm from '@/ui/login/login-form';
+import SocialLoginButtons from '@/ui/login/social-login-buttons';
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
