@@ -3,8 +3,8 @@ import { authConfig } from './auth.config';
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
-import VKProvider from 'next-auth/providers/vk';
 import type { Provider } from 'next-auth/providers';
+import VKProvider from 'next-auth/providers/vk';
 import type { User } from '@/lib/placeholder-data';
 import { sql } from '@vercel/postgres';
 import bcrypt from 'bcrypt';
@@ -25,6 +25,7 @@ const FormSchema = z.object({
 	password: z.string().trim().min(6),
 });
 
+////////
 const providers: Provider[] = [
 	Credentials({
 		async authorize(credentials) {
@@ -50,9 +51,11 @@ const providers: Provider[] = [
 		clientId: process.env.GOOGLE_CLIENT_ID!,
 		clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 	}),
-	VKProvider({
+  // VkOAuthProvider
+  VKProvider({
 		clientId: process.env.VK_CLIENT_ID!,
-		clientSecret: process.env.VK_CLIENT_SECRET!,
+    clientSecret: process.env.VK_CLIENT_SECRET!,
+    checks: ['state'],
 	}),
 ];
 
