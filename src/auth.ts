@@ -46,7 +46,7 @@ export const VkOAuthProvider: Provider = {
   },
   token: {
     url: 'https://oauth.vk.com/access_token',
-    async request({ provider, tokens }) {
+    async request({ provider, tokens }: { provider: any, tokens: any}) {
       const params = new URLSearchParams();
       params.append('client_id', provider.clientId);
       params.append('client_secret', provider.clientSecret);
@@ -76,7 +76,7 @@ export const VkOAuthProvider: Provider = {
   },
   userinfo: {
     url: 'https://api.vk.com/method/users.get?v=5.131&fields=email,photo_100',
-    async request({ tokens, provider }) {
+    async request({ tokens }: {tokens: any}) {
       const accessToken = tokens.access_token;
       const res = await fetch(
         `https://api.vk.com/method/users.get?v=5.131&access_token=${accessToken}&fields=email,photo_100`,
