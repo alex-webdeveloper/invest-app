@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Аналитика",
-  description: "Вся информация предоставленна Московской биржей (MOEX ISS API) в режиме реального времени: девиденты акций ведущих компаний.",
+  description: "Вся информация предоставлена Московской биржей (MOEX ISS API) в режиме реального времени: девиденты акций ведущих компаний.",
 };
 
 export default async function AnalyticsPage(props: {

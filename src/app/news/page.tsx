@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Новости экономики",
-  description: "Вся информация предоставленна RBC, Lenta, и Interfax в режиме реального времени: новости экономики.",
+  description: "Вся информация предоставлена RBC, Lenta, и Interfax в режиме реального времени: новости экономики.",
 };
 
 export default async function News(props: {

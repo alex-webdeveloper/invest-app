@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Котировки и курсы акций-invest-app.ru",
-  description: "Вся информация предоставленна Московской биржей (MOEX ISS API) в режиме реального времени: текущие котировки акций ведущих компаний.",
+  description: "Вся информация предоставлена Московской биржей (MOEX ISS API) в режиме реального времени: текущие котировки акций ведущих компаний.",
 };
 
 export default function RootLayout({
