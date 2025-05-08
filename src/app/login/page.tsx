@@ -4,6 +4,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Login",
+  robots: 'noindex, nofollow',
+  alternates: {
+    canonical: undefined,
+  },
 };
 
 export default async function LoginPage(props:

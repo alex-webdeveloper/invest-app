@@ -4,9 +4,14 @@ import { Suspense } from 'react';
 import BlockNewsSkeleton from '@/ui/news/news-block-skeleton';
 import { Metadata } from 'next';
 
+const isProduction = process.env.VERCEL_ENV === 'production';
+
 export const metadata: Metadata = {
   title: "Новости экономики",
   description: "Вся информация предоставлена RBC, Lenta, и Interfax в режиме реального времени: новости экономики.",
+  alternates: {
+    canonical: isProduction ? 'https://www.invest-ru.ru/news': undefined,
+  },
 };
 
 export default async function News(props: {
