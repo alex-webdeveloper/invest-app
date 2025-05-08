@@ -15,9 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const isProduction = process.env.VERCEL_ENV === 'production';
+
 export const metadata: Metadata = {
   title: "Котировки и курсы акций-invest-app.ru",
   description: "Вся информация предоставлена Московской биржей (MOEX ISS API) в режиме реального времени: текущие котировки акций ведущих компаний.",
+  robots: isProduction ? 'index, follow' : 'noindex, nofollow',
 };
 
 export default function RootLayout({
@@ -28,6 +31,14 @@ export default function RootLayout({
 
   return (
     <html lang="ru">
+      <head>
+        {!isProduction && (
+          <meta name="robots" content="noindex,nofollow" />
+        )}
+        {isProduction && (
+          <link rel="canonical" href="https://www.invest-ru.ru" />
+        )}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

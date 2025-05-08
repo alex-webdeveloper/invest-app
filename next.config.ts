@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  env: {
+    VERCEL_ENV: process.env.VERCEL_ENV,
+  },
   images: {
     domains: [
       'lenta.ru',
