@@ -3,16 +3,20 @@ import BlockNews from '@/ui/news/news-block';
 import { Suspense } from 'react';
 import BlockNewsSkeleton from '@/ui/news/news-block-skeleton';
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 
-const isProduction = process.env.VERCEL_ENV === 'production';
+export async function generateMetadata(): Promise<Metadata> {
+  const host = (await headers()).get('host') || '';
+  const isProduction = host === 'www.invest-ru.ru';
 
-export const metadata: Metadata = {
-  title: "Новости экономики",
-  description: "Вся информация предоставлена RBC, Lenta, и Interfax в режиме реального времени: новости экономики.",
-  alternates: {
-    canonical: isProduction ? 'https://www.invest-ru.ru/news': undefined,
-  },
-};
+  return {
+    title: "Новости экономики",
+    description: "Вся информация предоставлена RBC, Lenta, и Interfax в режиме реального времени: новости экономики.",
+    alternates: {
+      canonical: isProduction ? 'https://www.invest-ru.ru/news' : undefined,
+    },
+  };
+}
 
 export default async function News(props: {
   searchParams?: Promise<{ page?: string }>;

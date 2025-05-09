@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Footer from "@/component/footer";
 import Header from "@/component/header";
 import { Providers } from '@/component/providers';
+import { headers } from 'next/headers';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,17 +16,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const isProduction = process.env.VERCEL_ENV === 'production';
-console.log('VERCEL_ENV', process.env.VERCEL_ENV);
+export async function generateMetadata(): Promise<Metadata> {
+  const host = (await headers()).get('host') || '';
+  const isProduction = host === 'www.invest-ru.ru';
 
-export const metadata: Metadata = {
-  title: "Котировки и курсы акций-invest-app.ru",
-  description: "Вся информация предоставлена Московской биржей (MOEX ISS API) в режиме реального времени: текущие котировки акций ведущих компаний.",
-  robots: isProduction ? 'index, follow' : 'noindex, nofollow',
-  alternates: {
-    canonical: isProduction ? 'https://www.invest-ru.ru': undefined,
-  },
-};
+  return {
+    title: "Котировки и курсы акций-invest-app.ru",
+    description: "Вся информация предоставлена Московской биржей (MOEX ISS API) в режиме реального времени: текущие котировки акций ведущих компаний.",
+    robots: isProduction ? 'index, follow' : 'noindex, nofollow',
+    alternates: {
+      canonical: isProduction ? 'https://www.invest-ru.ru': undefined,
+    },
+  };
+}
 
 export default function RootLayout({
   children,
